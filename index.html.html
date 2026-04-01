@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한길티에스엠 — 산업용 공구 전문 유통</title>
+  <style>
+/* ============================================================
+   �ѱ�Ƽ������ ? style.css
+   Industrial Tool Distribution Company Website
+   ============================================================ */
+
+/* ���� RESET & BASE ���� */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --steel:    #0f1923;      /* £�� ��ƿ ����-���� (���� ��ũ) */
+  --iron:     #1c2b3a;      /* ���̾� ���� */
+  --orange:   #e85d04;      /* ���� ������ (����Ʈ) */
+  --orange-l: #ff8c42;      /* ���� ������ (ȣ��) */
+  --yellow:   #ffc300;      /* ���/���� ��� */
+  --silver:   #c8d6e5;      /* �ǹ� (���� �ؽ�Ʈ) */
+  --mist:     #7f8fa4;      /* �帰 �ؽ�Ʈ */
+  --white:    #f4f7fa;
+  --line:     rgba(255,255,255,0.08);
+  --line-d:   rgba(15,25,35,0.12);
+  --card-bg:  #162232;
+  --radius:   6px;
+  --shadow:   0 8px 32px rgba(0,0,0,0.35);
+  --trans:    all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--white);
+  color: var(--steel);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ���� SECTION COMMON ���� */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 18px;
+}
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--orange);
+}
+.section-tag.light {
+  color: var(--orange-l);
+}
+.section-tag.light::before {
+  background: var(--orange-l);
+}
+
+.section-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+.section-title.light { color: var(--white); }
+
+/* ���� REVEAL ANIMATION ���� */
+.reveal, .reveal-delay {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-delay {
+  transition-delay: 0.3s;
+}
+.reveal.visible, .reveal-delay.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ????????????????????????????????????
+   HEADER
+   ???????????????????????????????????? */
+#header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: rgba(15, 25, 35, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  transition: var(--trans);
+}
+#header.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.logo-kr {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+.logo-en {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  flex: 1;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--silver);
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--orange);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+
+.header-cta {
+  margin-left: auto;
+  padding: 10px 24px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius);
+  transition: var(--trans);
+  white-space: nowrap;
+}
+.header-cta:hover {
+  background: var(--orange-l);
+  transform: translateY(-1px);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  padding: 4px;
+  margin-left: auto;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--silver);
+  border-radius: 2px;
+  transition: var(--trans);
+}
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--steel);
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+.mobile-menu.open { max-height: 400px; }
+.mobile-link {
+  padding: 16px 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--silver);
+  border-bottom: 1px solid var(--line);
+  transition: color 0.2s, background 0.2s;
+}
+.mobile-link:hover { color: var(--white); background: var(--iron); }
+.mobile-cta {
+  margin: 20px 40px;
+  padding: 14px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: var(--radius);
+}
+
+
+/* ????????????????????????????????????
+   HERO
+   ???????????????????????????????????? */
+#hero {
+  min-height: 100vh;
+  background: var(--steel);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 140px 40px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f1923 0%, #1c2b3a 50%, #0d1520 100%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(232,93,4,0.06) 59px, rgba(232,93,4,0.06) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(232,93,4,0.06) 59px, rgba(232,93,4,0.06) 60px);
+}
+.hero-glow {
+  position: absolute;
+  top: 20%; left: 60%;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(232,93,4,0.12) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.bolt {
+  position: absolute;
+  font-size: 8rem;
+  color: rgba(255,255,255,0.02);
+  animation: floatBolt 8s ease-in-out infinite;
+}
+.b1 { top: 10%; right: 15%; animation-delay: 0s; font-size: 12rem; }
+.b2 { top: 55%; right: 5%; animation-delay: 2s; font-size: 6rem; }
+.b3 { bottom: 15%; right: 30%; animation-delay: 4s; font-size: 9rem; }
+.b4 { top: 30%; right: 40%; animation-delay: 1s; font-size: 5rem; }
+
+@keyframes floatBolt {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(232,93,4,0.15);
+  border: 1px solid rgba(232,93,4,0.3);
+  color: var(--orange-l);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 8px 18px;
+  border-radius: 40px;
+  margin-bottom: 32px;
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.hero-title {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: -2px;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--orange);
+  -webkit-text-stroke: 0;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--mist);
+  margin-bottom: 44px;
+}
+.hero-desc strong { color: var(--silver); }
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn-main {
+  padding: 16px 40px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius);
+  transition: var(--trans);
+  display: inline-block;
+}
+.btn-main:hover {
+  background: var(--orange-l);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232,93,4,0.4);
+}
+.btn-outline {
+  padding: 16px 32px;
+  border: 1.5px solid rgba(200,214,229,0.3);
+  color: var(--silver);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: var(--trans);
+  display: inline-block;
+}
+.btn-outline:hover {
+  border-color: var(--orange);
+  color: var(--orange-l);
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 80px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.hstat {
+  flex: 1;
+  padding: 28px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hstat-num-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+.hstat strong {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+.hstat span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  color: var(--orange);
+  line-height: 1;
+}
+.hstat small {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-top: 10px;
+  white-space: nowrap;
+}
+.hstat-divider {
+  width: 1px;
+  height: 60px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+.scroll-down span {
+  display: block;
+  width: 20px; height: 34px;
+  border: 2px solid rgba(200,214,229,0.3);
+  border-radius: 20px;
+  position: relative;
+}
+.scroll-down span::after {
+  content: '';
+  position: absolute;
+  top: 6px; left: 50%;
+  transform: translateX(-50%);
+  width: 4px; height: 8px;
+  background: var(--orange);
+  border-radius: 4px;
+  animation: scrollDot 1.8s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0% { top: 6px; opacity: 1; }
+  80% { top: 16px; opacity: 0; }
+  100% { top: 6px; opacity: 0; }
+}
+
+
+/* ????????????????????????????????????
+   ABOUT
+   ???????????????????????????????????? */
+#about {
+  padding: 120px 0;
+  background: var(--white);
+}
+
+.about-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #4a5568;
+  margin-bottom: 16px;
+}
+.about-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+}
+.abadge {
+  padding: 10px 18px;
+  background: #f0f4f8;
+  border: 1px solid #d8e2ec;
+  border-radius: 40px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--steel);
+}
+
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.about-card-big {
+  background: var(--steel);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--orange) 0%, var(--iron) 50%);
+}
+.acb-inner {
+  background: var(--steel);
+  border-radius: 10px;
+  padding: 40px;
+}
+.acb-icon { font-size: 2rem; margin-bottom: 16px; }
+.acb-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.acb-num span {
+  font-size: 2rem;
+  color: var(--orange);
+}
+.acb-label {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 20px;
+}
+.acb-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.acb-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
+  border-radius: 4px;
+  transition: width 1.5s ease 0.5s;
+}
+.acb-fill.animate { width: 88%; }
+.acb-desc {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--mist);
+}
+
+.about-cards-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.acard {
+  background: #f0f4f8;
+  border-radius: 10px;
+  padding: 28px;
+  text-align: center;
+}
+.acard-dark {
+  background: var(--orange);
+  color: var(--white);
+}
+.acard-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.acard-label {
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.7;
+}
+.acard-dark .acard-num { color: var(--white); }
+.acard-dark .acard-label { color: var(--white); }
+
+
+/* ????????????????????????????????????
+   PRODUCTS
+   ???????????????????????????????????? */
+#products {
+  background: var(--steel);
+  padding: 120px 40px;
+}
+
+.products-header {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.products-sub {
+  font-size: 0.95rem;
+  color: var(--mist);
+  margin-top: 16px;
+}
+
+.products-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.prod-card {
+  background: var(--iron);
+  padding: 44px 36px;
+  transition: var(--trans);
+  transition-delay: var(--d, 0s);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.prod-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.prod-card:hover::before { transform: scaleX(1); }
+.prod-card:hover { background: #203040; }
+
+.prod-icon {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  display: block;
+}
+.prod-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.prod-card p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--mist);
+  margin-bottom: 20px;
+}
+.prod-list {
+  list-style: none;
+  margin-bottom: 24px;
+}
+.prod-list li {
+  font-size: 0.8rem;
+  color: var(--silver);
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.prod-list li::before {
+  content: '?';
+  color: var(--orange);
+  flex-shrink: 0;
+}
+.prod-more {
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 700;
+  transition: gap 0.2s;
+  display: inline-block;
+}
+.prod-card:hover .prod-more { letter-spacing: 2px; }
+
+
+/* ????????????????????????????????????
+   WHY
+   ???????????????????????????????????? */
+#why {
+  padding: 120px 0;
+  background: var(--white);
+}
+
+.why-header {
+  margin-bottom: 60px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.why-card {
+  border: 1px solid var(--line-d);
+  border-radius: 10px;
+  padding: 36px 32px;
+  position: relative;
+  transition: var(--trans);
+  transition-delay: var(--d, 0s);
+  overflow: hidden;
+}
+.why-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--steel), var(--iron));
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+.why-card:hover::after { opacity: 1; }
+.why-card:hover h3, .why-card:hover p { color: var(--white); }
+.why-card:hover .why-num { color: var(--orange); }
+.why-card:hover .why-icon { filter: none; }
+
+.why-num {
+  position: absolute;
+  top: 28px; right: 28px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: rgba(15,25,35,0.08);
+  transition: color 0.3s;
+  z-index: 1;
+}
+.why-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.why-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--steel);
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+.why-card p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: #5a6a7a;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+
+/* ????????????????????????????????????
+   BRANDS (MARQUEE)
+   ???????????????????????????????????? */
+#brands {
+  background: #f0f4f8;
+  border-top: 1px solid var(--line-d);
+  border-bottom: 1px solid var(--line-d);
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.brands-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.brands-label {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mist);
+  white-space: nowrap;
+  padding-left: 40px;
+  flex-shrink: 0;
+}
+.brands-track-wrap {
+  flex: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.brands-track {
+  display: flex;
+  gap: 56px;
+  animation: marquee 20s linear infinite;
+  width: max-content;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.brands-track:hover { animation-play-state: paused; }
+.brand {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #aab8c8;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.brand:hover { color: var(--orange); }
+
+
+/* ????????????????????????????????????
+   CONTACT
+   ???????????????????????????????????? */
+#contact {
+  padding: 120px 0;
+  background: var(--steel);
+}
+
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact-desc {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--mist);
+  margin: 20px 0 40px;
+}
+
+.contact-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.cinfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.cinfo-icon {
+  width: 44px; height: 44px;
+  background: rgba(232,93,4,0.15);
+  border: 1px solid rgba(232,93,4,0.3);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.cinfo-label {
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 4px;
+}
+.cinfo-val {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* Form */
+.contact-form {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 44px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--silver);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(200,214,229,0.15);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(127,143,164,0.6);
+}
+.form-group select option {
+  background: var(--iron);
+  color: var(--white);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+  background: rgba(232,93,4,0.06);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+.form-submit {
+  width: 100%;
+  padding: 16px 32px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: var(--trans);
+  margin-top: 8px;
+}
+.form-submit:hover {
+  background: var(--orange-l);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232,93,4,0.35);
+}
+.form-success {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(100,200,120,0.1);
+  border: 1px solid rgba(100,200,120,0.3);
+  border-radius: var(--radius);
+  color: #6dc87d;
+  font-size: 0.88rem;
+  text-align: center;
+}
+.form-success.show { display: block; }
+
+
+/* ????????????????????????????????????
+   FOOTER
+   ???????????????????????????????????? */
+#footer {
+  background: #08111a;
+  border-top: 1px solid var(--line);
+}
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+}
+.footer-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--mist);
+  margin-bottom: 16px;
+}
+.footer-bizinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footer-bizinfo p {
+  font-size: 0.78rem;
+  color: rgba(200,214,229,0.45);
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.footer-bizinfo p span {
+  color: rgba(127,143,164,0.6);
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  min-width: 88px;
+  flex-shrink: 0;
+}
+.footer-copy {
+  font-size: 0.78rem;
+  color: rgba(127,143,164,0.5);
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-col strong {
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 4px;
+}
+.footer-col a,
+.footer-col span {
+  font-size: 0.85rem;
+  color: rgba(200,214,229,0.5);
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--orange-l); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #c8d6e5;
+}
+
+
+/* ????????????????????????????????????
+   RESPONSIVE
+   ???????????????????????????????????? */
+@media (max-width: 1024px) {
+  .about-wrap { gap: 48px; }
+  .contact-wrap { gap: 48px; }
+}
+
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  .header-inner { padding: 0 24px; }
+  .nav-links { display: none; }
+  .header-cta { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+
+  #hero { padding: 120px 24px 80px; }
+  .hero-stats {
+    flex-wrap: wrap;
+    margin-top: 48px;
+  }
+  .hstat { min-width: calc(50% - 1px); border-bottom: 1px solid var(--line); }
+  .hstat-divider { display: none; }
+
+  .about-wrap,
+  .contact-wrap {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .products-grid,
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  #products { padding: 80px 24px; }
+  .products-header { padding: 0; }
+
+  .form-row { grid-template-columns: 1fr; }
+  .contact-form { padding: 28px 24px; }
+
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .footer-links { grid-template-columns: repeat(3, 1fr); }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  #why { padding: 80px 0; }
+}
+
+@media (max-width: 600px) {
+  .products-grid,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-cards-small { grid-template-columns: 1fr; }
+  .footer-links { grid-template-columns: 1fr 1fr; }
+  .hero-title { font-size: 2.8rem; letter-spacing: -1px; }
+  .hero-stats { margin-top: 32px; }
+  .hstat { min-width: 100%; }
+}
+</style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══════════════ HEADER / NAV ══════════════ -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-kr">한길</span>
+        <span class="logo-en">TSM</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">회사소개</a>
+        <a href="#products">취급품목</a>
+        <a href="#why">왜 한길인가</a>
+        <a href="#contact">문의하기</a>
+      </nav>
+      <a href="#contact" class="header-cta">견적 요청</a>
+      <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" class="mobile-link">회사소개</a>
+      <a href="#products" class="mobile-link">취급품목</a>
+      <a href="#why" class="mobile-link">왜 한길인가</a>
+      <a href="#contact" class="mobile-link">문의하기</a>
+      <a href="#contact" class="mobile-cta">견적 요청</a>
+    </div>
+  </header>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section id="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+      <!-- Decorative bolt pattern -->
+      <div class="hero-pattern">
+        <div class="bolt b1">⬡</div>
+        <div class="bolt b2">⬡</div>
+        <div class="bolt b3">⬡</div>
+        <div class="bolt b4">⬡</div>
+      </div>
+    </div>
+    <div class="hero-content reveal">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        산업용 공구 전문 유통 · 전국 납품
+      </div>
+      <h1 class="hero-title">
+        현장의 힘을<br />
+        <em>한길</em>로 잇다
+      </h1>
+      <p class="hero-desc">
+        30년 경험의 공구 유통 전문 기업 <strong>한길티에스엠</strong>.<br />
+        절삭공구부터 측정장비까지, 현장에 필요한 모든 것을 공급합니다.
+      </p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-main">취급품목 보기</a>
+        <a href="#contact" class="btn-outline">견적 문의 →</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal-delay">
+      <div class="hstat">
+        <div class="hstat-num-row"><strong class="counter" data-target="30">0</strong><span>년+</span></div>
+        <small>업력</small>
+      </div>
+      <div class="hstat-divider"></div>
+      <div class="hstat">
+        <div class="hstat-num-row"><strong class="counter" data-target="2000">0</strong><span>+</span></div>
+        <small>취급 품목</small>
+      </div>
+      <div class="hstat-divider"></div>
+      <div class="hstat">
+        <div class="hstat-num-row"><strong class="counter" data-target="500">0</strong><span>+</span></div>
+        <small>거래처</small>
+      </div>
+      <div class="hstat-divider"></div>
+      <div class="hstat">
+        <div class="hstat-num-row"><strong class="counter" data-target="24">0</strong><span>시간</span></div>
+        <small>긴급납품</small>
+      </div>
+    </div>
+    <a href="#about" class="scroll-down" aria-label="아래로 스크롤">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-left reveal">
+          <div class="section-tag">About Us</div>
+          <h2 class="section-title">현장을 가장<br />잘 아는 기업</h2>
+          <p class="about-text">
+            한길티에스엠은 산업 현장의 요구를 가장 가까이에서 이해하는 공구 유통 전문 기업입니다.
+            제조업, 건설업, 자동차 산업 등 다양한 분야의 현장을 지원하며 신뢰를 쌓아왔습니다.
+          </p>
+          <p class="about-text">
+            단순 납품을 넘어 최적의 공구 선택부터 재고 관리, 긴급 납품까지 고객사의 생산성을 높이는
+            종합 솔루션 파트너가 되겠습니다.
+          </p>
+          <div class="about-badges">
+            <div class="abadge">🏭 제조현장 전문</div>
+            <div class="abadge">🚚 전국 신속 배송</div>
+            <div class="abadge">📋 기업 구매 지원</div>
+            <div class="abadge">🔧 기술 상담 무료</div>
+          </div>
+        </div>
+        <div class="about-right reveal">
+          <div class="about-card-big">
+            <div class="acb-inner">
+              <div class="acb-icon">🔩</div>
+              <div class="acb-num">30<span>년</span></div>
+              <div class="acb-label">공구 유통 업력</div>
+              <div class="acb-bar">
+                <div class="acb-fill"></div>
+              </div>
+              <p class="acb-desc">1990년대부터 이어온 공구 유통의 역사.<br />축적된 노하우가 현장을 지킵니다.</p>
+            </div>
+          </div>
+          <div class="about-cards-small">
+            <div class="acard">
+              <div class="acard-num">100%</div>
+              <div class="acard-label">정품 보증</div>
+            </div>
+            <div class="acard acard-dark">
+              <div class="acard-num">D+1</div>
+              <div class="acard-label">익일 배송</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PRODUCTS ══════════════ -->
+  <section id="products">
+    <div class="products-header reveal">
+      <div class="section-tag light">Products</div>
+      <h2 class="section-title light">취급 품목</h2>
+      <p class="products-sub">산업 현장에 필요한 모든 공구를 공급합니다</p>
+    </div>
+    <div class="products-grid">
+      <div class="prod-card reveal" style="--d:0s">
+        <div class="prod-icon">⚙️</div>
+        <h3>절삭공구</h3>
+        <p>드릴, 엔드밀, 탭, 다이스, 리머, 바이트 등 각종 절삭 가공 공구 전 라인업</p>
+        <ul class="prod-list">
+          <li>초경 드릴 / HSS 드릴</li>
+          <li>엔드밀 (황삭/정삭)</li>
+          <li>인서트 / 홀더</li>
+          <li>탭 & 다이스</li>
+        </ul>
+        <span class="prod-more">더 보기 →</span>
+      </div>
+      <div class="prod-card reveal" style="--d:0.1s">
+        <div class="prod-icon">🔧</div>
+        <h3>수공구</h3>
+        <p>스패너, 렌치, 플라이어, 해머 등 현장 필수 수공구 전 품목 상시 재고 보유</p>
+        <ul class="prod-list">
+          <li>스패너 / 렌치 세트</li>
+          <li>플라이어 / 니퍼</li>
+          <li>해머 / 드라이버</li>
+          <li>작업공구 세트</li>
+        </ul>
+        <span class="prod-more">더 보기 →</span>
+      </div>
+      <div class="prod-card reveal" style="--d:0.2s">
+        <div class="prod-icon">📏</div>
+        <h3>측정공구</h3>
+        <p>마이크로미터, 버니어캘리퍼스, 게이지 등 정밀 측정 기기 전문 취급</p>
+        <ul class="prod-list">
+          <li>버니어캘리퍼스</li>
+          <li>마이크로미터</li>
+          <li>다이얼게이지</li>
+          <li>블록게이지 / 한계게이지</li>
+        </ul>
+        <span class="prod-more">더 보기 →</span>
+      </div>
+      <div class="prod-card reveal" style="--d:0s">
+        <div class="prod-icon">⚡</div>
+        <h3>전동공구</h3>
+        <p>그라인더, 드릴, 임팩트렌치 등 산업용 전동공구 및 소모품 일괄 공급</p>
+        <ul class="prod-list">
+          <li>그라인더 (핸드/벤치)</li>
+          <li>전동드릴 / 해머드릴</li>
+          <li>임팩트렌치</li>
+          <li>연삭 소모품</li>
+        </ul>
+        <span class="prod-more">더 보기 →</span>
+      </div>
+      <div class="prod-card reveal" style="--d:0.1s">
+        <div class="prod-icon">🛡️</div>
+        <h3>안전보호구</h3>
+        <p>헬멧, 안전화, 장갑, 보호안경 등 현장 안전을 위한 보호 장비 풀라인업</p>
+        <ul class="prod-list">
+          <li>안전모 / 안전화</li>
+          <li>방진마스크 / 귀마개</li>
+          <li>안전장갑 / 보안경</li>
+          <li>안전조끼 / 안전벨트</li>
+        </ul>
+        <span class="prod-more">더 보기 →</span>
+      </div>
+      <div class="prod-card reveal" style="--d:0.2s">
+        <div class="prod-icon">🔩</div>
+        <h3>체결부품</h3>
+        <p>볼트, 너트, 와셔, 핀 등 각종 규격 체결부품 대량 재고 보유 및 긴급 공급</p>
+        <ul class="prod-list">
+          <li>볼트 / 너트 (각 규격)</li>
+          <li>와셔 / 스프링와셔</li>
+          <li>핀 / 키 / 오링</li>
+          <li>특수 규격 별도 문의</li>
+        </ul>
+        <span class="prod-more">더 보기 →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ WHY ══════════════ -->
+  <section id="why">
+    <div class="container">
+      <div class="why-header reveal">
+        <div class="section-tag">Why Hangil</div>
+        <h2 class="section-title">한길티에스엠을<br />선택하는 이유</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal" style="--d:0s">
+          <div class="why-num">01</div>
+          <div class="why-icon">🏪</div>
+          <h3>방대한 재고</h3>
+          <p>2,000종 이상의 품목을 상시 보유. 발주 즉시 출고 가능한 안정적인 공급 체계를 운영합니다.</p>
+        </div>
+        <div class="why-card reveal" style="--d:0.1s">
+          <div class="why-num">02</div>
+          <div class="why-icon">⚡</div>
+          <h3>신속한 납품</h3>
+          <p>수도권 당일 배송, 전국 익일 배송 원칙. 긴급 수요에도 24시간 이내 납품이 가능합니다.</p>
+        </div>
+        <div class="why-card reveal" style="--d:0.2s">
+          <div class="why-num">03</div>
+          <div class="why-icon">💰</div>
+          <h3>경쟁력 있는 가격</h3>
+          <p>직수입 및 대량 구매를 통한 원가 절감. 합리적인 가격으로 기업 구매비용을 낮춰드립니다.</p>
+        </div>
+        <div class="why-card reveal" style="--d:0s">
+          <div class="why-num">04</div>
+          <div class="why-icon">🎯</div>
+          <h3>전문 기술 상담</h3>
+          <p>30년 경력의 전문가가 최적의 공구를 추천합니다. 현장 상황에 맞는 솔루션을 제시합니다.</p>
+        </div>
+        <div class="why-card reveal" style="--d:0.1s">
+          <div class="why-num">05</div>
+          <div class="why-icon">✅</div>
+          <h3>정품 100% 보증</h3>
+          <p>국내외 공인 유통망을 통한 정품만 취급. 품질 보증서 및 거래명세서를 철저히 발행합니다.</p>
+        </div>
+        <div class="why-card reveal" style="--d:0.2s">
+          <div class="why-num">06</div>
+          <div class="why-icon">🤝</div>
+          <h3>장기 파트너십</h3>
+          <p>단발 거래가 아닌 지속적인 파트너 관계. 정기 납품 계약 및 기업 전담 담당자를 배정합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ BRANDS ══════════════ -->
+  <section id="brands">
+    <div class="brands-inner">
+      <div class="brands-label">취급 브랜드</div>
+      <div class="brands-track-wrap">
+        <div class="brands-track">
+          <span class="brand">SANDVIK</span>
+          <span class="brand">MITSUBISHI</span>
+          <span class="brand">KYOCERA</span>
+          <span class="brand">ISCAR</span>
+          <span class="brand">KENNAMETAL</span>
+          <span class="brand">STANLEY</span>
+          <span class="brand">BOSCH</span>
+          <span class="brand">MAKITA</span>
+          <span class="brand">MITUTOYO</span>
+          <span class="brand">DIJET</span>
+          <!-- duplicate for loop -->
+          <span class="brand">SANDVIK</span>
+          <span class="brand">MITSUBISHI</span>
+          <span class="brand">KYOCERA</span>
+          <span class="brand">ISCAR</span>
+          <span class="brand">KENNAMETAL</span>
+          <span class="brand">STANLEY</span>
+          <span class="brand">BOSCH</span>
+          <span class="brand">MAKITA</span>
+          <span class="brand">MITUTOYO</span>
+          <span class="brand">DIJET</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-left reveal">
+          <div class="section-tag">Contact</div>
+          <h2 class="section-title">지금 바로<br />문의하세요</h2>
+          <p class="contact-desc">
+            공구 견적, 납품 문의, 기술 상담 모두 가능합니다.<br />
+            빠른 답변을 드리겠습니다.
+          </p>
+          <div class="contact-infos">
+            <div class="cinfo">
+              <div class="cinfo-icon">📞</div>
+              <div>
+                <div class="cinfo-label">전화 / 팩스</div>
+                <div class="cinfo-val">051-319-0979 / 051-319-0915</div>
+              </div>
+            </div>
+            <div class="cinfo">
+              <div class="cinfo-icon">📱</div>
+              <div>
+                <div class="cinfo-label">휴대전화</div>
+                <div class="cinfo-val">010-4571-0718</div>
+              </div>
+            </div>
+            <div class="cinfo">
+              <div class="cinfo-icon">✉️</div>
+              <div>
+                <div class="cinfo-label">이메일</div>
+                <div class="cinfo-val">hgtism@naver.com</div>
+              </div>
+            </div>
+            <div class="cinfo">
+              <div class="cinfo-icon">📍</div>
+              <div>
+                <div class="cinfo-label">주소</div>
+                <div class="cinfo-val">부산광역시 사상구 괘감로 37, 27동 1층 136호<br><small style="color:var(--mist);font-size:0.8rem">(괘법동, 부산산업용품유통상가 27동 136호)</small></div>
+              </div>
+            </div>
+            <div class="cinfo">
+              <div class="cinfo-icon">🕐</div>
+              <div>
+                <div class="cinfo-label">운영시간</div>
+                <div class="cinfo-val">평일 09:00 – 18:00</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 사업자 정보 -->
+          <div style="margin-top:32px; padding:24px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px;">
+            <p style="font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:#7f8fa4; margin-bottom:14px; font-weight:700;">사업자 정보</p>
+            <table style="width:100%; border-collapse:collapse; font-size:0.83rem;">
+              <tr>
+                <td style="color:#7f8fa4; padding:5px 12px 5px 0; white-space:nowrap; width:110px;">상호</td>
+                <td style="color:#c8d6e5;">한길티에스엠</td>
+              </tr>
+              <tr>
+                <td style="color:#7f8fa4; padding:5px 12px 5px 0; white-space:nowrap;">대표자</td>
+                <td style="color:#c8d6e5;">이채호</td>
+              </tr>
+              <tr>
+                <td style="color:#7f8fa4; padding:5px 12px 5px 0; white-space:nowrap;">사업자등록번호</td>
+                <td style="color:#c8d6e5;">606-14-47682</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="contact-right reveal">
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="company">회사명 *</label>
+                <input type="text" id="company" name="company" placeholder="(주)한국산업" required />
+              </div>
+              <div class="form-group">
+                <label for="name">담당자명 *</label>
+                <input type="text" id="name" name="name" placeholder="홍길동" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">연락처 *</label>
+                <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required />
+              </div>
+              <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="example@company.com" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">문의 유형</label>
+              <select id="subject" name="subject">
+                <option value="">선택해주세요</option>
+                <option value="quote">견적 요청</option>
+                <option value="supply">납품 문의</option>
+                <option value="consult">기술 상담</option>
+                <option value="contract">정기 거래 계약</option>
+                <option value="other">기타</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">문의 내용 *</label>
+              <textarea id="message" name="message" rows="5" placeholder="필요한 공구 품목, 수량, 납기 일정 등을 자유롭게 작성해주세요." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              <span>문의 보내기</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <div class="form-success" id="formSuccess">
+              ✅ 문의가 접수되었습니다. 영업일 기준 1일 이내 연락드리겠습니다.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-kr">한길</span><span class="logo-en">TSM</span>
+        </div>
+        <p class="footer-tagline">현장의 힘을 한길로 잇다</p>
+        <div class="footer-bizinfo">
+          <p><span>상호</span>(주)한길티에스엠</p>
+          <p><span>대표</span>이채호</p>
+          <p><span>사업자등록번호</span>606-14-47682</p>
+          <p><span>전화</span>051-319-0979</p>
+          <p><span>팩스</span>051-319-0915</p>
+          <p><span>휴대전화</span>010-4571-0718</p>
+          <p><span>이메일</span>hgtism@naver.com</p>
+          <p><span>주소</span>부산광역시 사상구 괘감로 37, 27동 1층 136호</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <strong>서비스</strong>
+          <a href="#products">취급품목</a>
+          <a href="#contact">견적 요청</a>
+          <a href="#contact">납품 문의</a>
+          <a href="#contact">기술 상담</a>
+        </div>
+        <div class="footer-col">
+          <strong>회사</strong>
+          <a href="#about">회사소개</a>
+          <a href="#why">왜 한길인가</a>
+          <a href="#brands">취급 브랜드</a>
+        </div>
+        <div class="footer-col">
+          <strong>연락처</strong>
+          <a href="tel:051-319-0979">📞 051-319-0979</a>
+          <a href="tel:010-4571-0718">📱 010-4571-0718</a>
+          <a href="mailto:hgtism@naver.com">✉️ hgtism@naver.com</a>
+          <span>평일 09:00 – 18:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" style="color:#c8d6e5 !important; display:flex; justify-content:space-between; padding:20px 40px; border-top:1px solid rgba(255,255,255,0.15);">
+      <spa
+      <span style="color:#c8d6e5;">© 2024 (주)한길티에스엠. All rights reserved.</span>
+      <span style="color:#c8d6e5;">사업자등록번호 606-14-47682 &nbsp;|&nbsp; 대표 이채호</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+/* ============================================================
+   �ѱ�Ƽ������ ? script.js
+   ============================================================ */
+
+'use strict';
+
+/* ��������������������������������������������������������������������������������
+   1. HEADER ? scroll effect & active state
+   �������������������������������������������������������������������������������� */
+const header = document.getElementById('header');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+
+/* ��������������������������������������������������������������������������������
+   2. HAMBURGER MENU (mobile)
+   �������������������������������������������������������������������������������� */
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-label', isOpen ? '�޴� �ݱ�' : '�޴� ����');
+});
+
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('active');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!header.contains(e.target)) {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('active');
+  }
+});
+
+
+/* ��������������������������������������������������������������������������������
+   3. SCROLL REVEAL (Intersection Observer)
+   �������������������������������������������������������������������������������� */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      if (entry.target.classList.contains('about-right')) {
+        const fill = entry.target.querySelector('.acb-fill');
+        if (fill) fill.classList.add('animate');
+      }
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+document.querySelectorAll('.reveal, .reveal-delay').forEach(el => {
+  revealObserver.observe(el);
+});
+
+
+/* ��������������������������������������������������������������������������������
+   4. COUNTER ANIMATION
+   �������������������������������������������������������������������������������� */
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 1800;
+  const startTime = performance.now();
+
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target).toLocaleString();
+    if (progress < 1) requestAnimationFrame(update);
+  }
+
+  requestAnimationFrame(update);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach(el => {
+  counterObserver.observe(el);
+});
+
+
+/* ��������������������������������������������������������������������������������
+   5. SMOOTH SCROLL
+   �������������������������������������������������������������������������������� */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const id = link.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const offset = 68;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+
+/* ��������������������������������������������������������������������������������
+   6. CONTACT FORM ? EmailJS ���� �߼�
+   �������������������������������������������������������������������������������� */
+emailjs.init('hiCp0jeQiIEa0Mngy');
+
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // ��ȿ�� �˻�
+    const required = contactForm.querySelectorAll('[required]');
+    let valid = true;
+
+    required.forEach(field => {
+      field.style.borderColor = '';
+      if (!field.value.trim()) {
+        field.style.borderColor = '#e05353';
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      contactForm.style.animation = 'none';
+      setTimeout(() => {
+        contactForm.style.animation = 'shake 0.4s ease';
+      }, 10);
+      return;
+    }
+
+    // ���� ����
+    const btn = contactForm.querySelector('.form-submit');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<span>���� ��...</span>';
+    btn.disabled = true;
+
+    // EmailJS �߼�
+    const templateParams = {
+      company: contactForm.company.value,
+      name:    contactForm.name.value,
+      phone:   contactForm.phone.value,
+      email:   contactForm.email.value,
+      subject: contactForm.subject.value || '�̼���',
+      message: contactForm.message.value,
+    };
+
+    emailjs.send('service_dmgaz2u', 'template_dqa0jjh', templateParams)
+      .then(() => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        formSuccess.style.color = '#6dc87d';
+        formSuccess.style.borderColor = 'rgba(100,200,120,0.3)';
+        formSuccess.textContent = '? ���ǰ� �����Ǿ����ϴ�. ������ ���� 1�� �̳� �����帮�ڽ��ϴ�.';
+        formSuccess.classList.add('show');
+        contactForm.reset();
+        setTimeout(() => formSuccess.classList.remove('show'), 6000);
+      })
+      .catch((error) => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        formSuccess.style.color = '#e05353';
+        formSuccess.style.borderColor = 'rgba(220,50,50,0.3)';
+        formSuccess.textContent = '? ���� �� ������ �߻��߽��ϴ�. ��ȭ�� ������ �ּ���. (051-319-0979)';
+        formSuccess.classList.add('show');
+        console.error('EmailJS error:', error);
+      });
+  });
+
+  contactForm.querySelectorAll('input, textarea').forEach(field => {
+    field.addEventListener('input', () => {
+      field.style.borderColor = '';
+    });
+  });
+}
+
+// Shake �ִϸ��̼�
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+`;
+document.head.appendChild(style);
+
+
+/* ��������������������������������������������������������������������������������
+   7. ACTIVE NAV LINK on scroll (spy)
+   �������������������������������������������������������������������������������� */
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+
+const spyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navAnchors.forEach(a => {
+        a.style.color = '';
+        if (a.getAttribute('href') === `#${id}`) {
+          a.style.color = 'var(--orange-l)';
+        }
+      });
+    }
+  });
+}, {
+  rootMargin: '-40% 0px -50% 0px'
+});
+
+sections.forEach(s => spyObserver.observe(s));
+
+
+/* ��������������������������������������������������������������������������������
+   8. HERO PARALLAX
+   �������������������������������������������������������������������������������� */
+const heroGlow = document.querySelector('.hero-glow');
+if (heroGlow) {
+  window.addEventListener('mousemove', (e) => {
+    if (window.scrollY > window.innerHeight) return;
+    const x = (e.clientX / window.innerWidth - 0.5) * 30;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    heroGlow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+  }, { passive: true });
+}
+
+
+/* ��������������������������������������������������������������������������������
+   9. PROD CARDS ? Ŭ���� ���� ������ �̵�
+   �������������������������������������������������������������������������������� */
+document.querySelectorAll('.prod-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.querySelector('h3')?.textContent || '';
+    const subjectSelect = document.getElementById('subject');
+    if (subjectSelect) subjectSelect.value = 'quote';
+    const messageField = document.getElementById('message');
+    if (messageField && !messageField.value) {
+      messageField.value = `${name} ���� ������ ���ǵ帳�ϴ�.\n\n`;
+      messageField.focus();
+    }
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+  </script>
+</body>
+</html>
