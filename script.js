@@ -168,7 +168,7 @@ if (contactForm) {
       message: contactForm.message.value,
     };
 
-    emailjs.send('service_dmgaz2u', 'vntrxhe', templateParams)
+    emailjs.send('service_dmgaz2u', 'template_dqa0jjh', templateParams)
       .then(() => {
         btn.innerHTML = originalHTML;
         btn.disabled = false;
