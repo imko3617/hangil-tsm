@@ -1617,14 +1617,14 @@ button { font-family: inherit; cursor: pointer; border: none; }
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
 /* ============================================================
-   �ѱ�Ƽ������ ? script.js
+    ? script.js
    ============================================================ */
 
 'use strict';
 
-/* ��������������������������������������������������������������������������������
+/* 
    1. HEADER ? scroll effect & active state
-   �������������������������������������������������������������������������������� */
+    */
 const header = document.getElementById('header');
 
 window.addEventListener('scroll', () => {
@@ -1636,9 +1636,9 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 
-/* ��������������������������������������������������������������������������������
+/* 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
    2. HAMBURGER MENU (mobile)
-   �������������������������������������������������������������������������������� */
+   占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 */
 const hamburger   = document.getElementById('hamburger');
 const mobileMenu  = document.getElementById('mobileMenu');
 const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
@@ -1646,7 +1646,7 @@ const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
 hamburger.addEventListener('click', () => {
   const isOpen = mobileMenu.classList.toggle('open');
   hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-label', isOpen ? '�޴� �ݱ�' : '�޴� ����');
+  hamburger.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
 });
 
 mobileLinks.forEach(link => {
@@ -1664,9 +1664,9 @@ document.addEventListener('click', (e) => {
 });
 
 
-/* ��������������������������������������������������������������������������������
+/* 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
    3. SCROLL REVEAL (Intersection Observer)
-   �������������������������������������������������������������������������������� */
+   占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 */
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1688,9 +1688,9 @@ document.querySelectorAll('.reveal, .reveal-delay').forEach(el => {
 });
 
 
-/* ��������������������������������������������������������������������������������
+/* 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
    4. COUNTER ANIMATION
-   �������������������������������������������������������������������������������� */
+   占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 */
 function animateCounter(el) {
   const target = parseInt(el.dataset.target, 10);
   const duration = 1800;
@@ -1721,9 +1721,7 @@ document.querySelectorAll('.counter').forEach(el => {
 });
 
 
-/* ��������������������������������������������������������������������������������
-   5. SMOOTH SCROLL
-   �������������������������������������������������������������������������������� */
+/* 5. SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     const id = link.getAttribute('href');
@@ -1738,9 +1736,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 
-/* ��������������������������������������������������������������������������������
-   6. CONTACT FORM ? EmailJS ���� �߼�
-   �������������������������������������������������������������������������������� */
+/* 
+   6. CONTACT FORM ? EmailJS 
+    */
 emailjs.init('hiCp0jeQiIEa0Mngy');
 
 const contactForm = document.getElementById('contactForm');
@@ -1750,7 +1748,7 @@ if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // ��ȿ�� �˻�
+    // 유효성 검사
     const required = contactForm.querySelectorAll('[required]');
     let valid = true;
 
@@ -1770,19 +1768,19 @@ if (contactForm) {
       return;
     }
 
-    // ���� ����
+    // 전송 시작
     const btn = contactForm.querySelector('.form-submit');
     const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<span>���� ��...</span>';
+    btn.innerHTML = '<span>전송 중...</span>';
     btn.disabled = true;
 
-    // EmailJS �߼�
+    // EmailJS 발송
     const templateParams = {
       company: contactForm.company.value,
       name:    contactForm.name.value,
       phone:   contactForm.phone.value,
       email:   contactForm.email.value,
-      subject: contactForm.subject.value || '�̼���',
+      subject: contactForm.subject.value || '미선택',
       message: contactForm.message.value,
     };
 
@@ -1792,7 +1790,7 @@ if (contactForm) {
         btn.disabled = false;
         formSuccess.style.color = '#6dc87d';
         formSuccess.style.borderColor = 'rgba(100,200,120,0.3)';
-        formSuccess.textContent = '? ���ǰ� �����Ǿ����ϴ�. ������ ���� 1�� �̳� �����帮�ڽ��ϴ�.';
+        formSuccess.textContent = '? 문의가 접수되었습니다. 영업일 기준 1일 이내 연락드리겠습니다.';
         formSuccess.classList.add('show');
         contactForm.reset();
         setTimeout(() => formSuccess.classList.remove('show'), 6000);
@@ -1802,7 +1800,7 @@ if (contactForm) {
         btn.disabled = false;
         formSuccess.style.color = '#e05353';
         formSuccess.style.borderColor = 'rgba(220,50,50,0.3)';
-        formSuccess.textContent = '? ���� �� ������ �߻��߽��ϴ�. ��ȭ�� ������ �ּ���. (051-319-0979)';
+        formSuccess.textContent = '? 전송 중 오류가 발생했습니다. 전화로 문의해 주세요. (051-319-0979)';
         formSuccess.classList.add('show');
         console.error('EmailJS error:', error);
       });
@@ -1815,7 +1813,7 @@ if (contactForm) {
   });
 }
 
-// Shake �ִϸ��̼�
+// Shake 애니메이션
 const style = document.createElement('style');
 style.textContent = `
   @keyframes shake {
@@ -1829,9 +1827,9 @@ style.textContent = `
 document.head.appendChild(style);
 
 
-/* ��������������������������������������������������������������������������������
+/* 
    7. ACTIVE NAV LINK on scroll (spy)
-   �������������������������������������������������������������������������������� */
+    */
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
 
@@ -1854,9 +1852,8 @@ const spyObserver = new IntersectionObserver((entries) => {
 sections.forEach(s => spyObserver.observe(s));
 
 
-/* ��������������������������������������������������������������������������������
-   8. HERO PARALLAX
-   �������������������������������������������������������������������������������� */
+/* 
+   8. HERO PARALLAX */
 const heroGlow = document.querySelector('.hero-glow');
 if (heroGlow) {
   window.addEventListener('mousemove', (e) => {
@@ -1868,9 +1865,7 @@ if (heroGlow) {
 }
 
 
-/* ��������������������������������������������������������������������������������
-   9. PROD CARDS ? Ŭ���� ���� ������ �̵�
-   �������������������������������������������������������������������������������� */
+/* 9. PROD CARDS ? 클릭시 문의 폼으로 이동 */
 document.querySelectorAll('.prod-card').forEach(card => {
   card.addEventListener('click', () => {
     const name = card.querySelector('h3')?.textContent || '';
@@ -1878,7 +1873,7 @@ document.querySelectorAll('.prod-card').forEach(card => {
     if (subjectSelect) subjectSelect.value = 'quote';
     const messageField = document.getElementById('message');
     if (messageField && !messageField.value) {
-      messageField.value = `${name} ���� ������ ���ǵ帳�ϴ�.\n\n`;
+      messageField.value = `${name} 관련 견적을 문의드립니다.\n\n`;
       messageField.focus();
     }
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
