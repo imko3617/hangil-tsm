@@ -31,7 +31,6 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
 });
 
-// Close on link click
 mobileLinks.forEach(link => {
   link.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
@@ -39,7 +38,6 @@ mobileLinks.forEach(link => {
   });
 });
 
-// Close on outside click
 document.addEventListener('click', (e) => {
   if (!header.contains(e.target)) {
     mobileMenu.classList.remove('open');
@@ -55,13 +53,10 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-
-      // Special: trigger about card bar animation
       if (entry.target.classList.contains('about-right')) {
         const fill = entry.target.querySelector('.acb-fill');
         if (fill) fill.classList.add('animate');
       }
-
       revealObserver.unobserve(entry.target);
     }
   });
@@ -80,13 +75,12 @@ document.querySelectorAll('.reveal, .reveal-delay').forEach(el => {
    ──────────────────────────────────────── */
 function animateCounter(el) {
   const target = parseInt(el.dataset.target, 10);
-  const duration = 1800; // ms
+  const duration = 1800;
   const startTime = performance.now();
 
   function update(now) {
     const elapsed = now - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    // Ease-out cubic
     const eased = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.round(eased * target).toLocaleString();
     if (progress < 1) requestAnimationFrame(update);
@@ -110,7 +104,7 @@ document.querySelectorAll('.counter').forEach(el => {
 
 
 /* ────────────────────────────────────────
-   5. SMOOTH SCROLL for anchor links
+   5. SMOOTH SCROLL
    ──────────────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
@@ -119,7 +113,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     const target = document.querySelector(id);
     if (!target) return;
     e.preventDefault();
-    const offset = 68; // header height
+    const offset = 68;
     const top = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: 'smooth' });
   });
@@ -127,15 +121,10 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 
 /* ────────────────────────────────────────
-   6. PRODUCT CARDS ? stagger on scroll
+   6. CONTACT FORM ? EmailJS 실제 발송
    ──────────────────────────────────────── */
-// Individual delay already in CSS via --d variable
-// Extra: cards inside #products grid use the reveal observer too
+emailjs.init('hiCp0jeQiIEa0Mngy');
 
-
-/* ────────────────────────────────────────
-   7. CONTACT FORM ? validation & submit
-   ──────────────────────────────────────── */
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
 
@@ -143,7 +132,7 @@ if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic validation
+    // 유효성 검사
     const required = contactForm.querySelectorAll('[required]');
     let valid = true;
 
@@ -156,7 +145,6 @@ if (contactForm) {
     });
 
     if (!valid) {
-      // Shake effect
       contactForm.style.animation = 'none';
       setTimeout(() => {
         contactForm.style.animation = 'shake 0.4s ease';
@@ -164,26 +152,44 @@ if (contactForm) {
       return;
     }
 
-    // Simulate submit
+    // 전송 시작
     const btn = contactForm.querySelector('.form-submit');
-    const originalText = btn.innerHTML;
+    const originalHTML = btn.innerHTML;
     btn.innerHTML = '<span>전송 중...</span>';
     btn.disabled = true;
 
-    setTimeout(() => {
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-      formSuccess.classList.add('show');
-      contactForm.reset();
+    // EmailJS 발송
+    const templateParams = {
+      company: contactForm.company.value,
+      name:    contactForm.name.value,
+      phone:   contactForm.phone.value,
+      email:   contactForm.email.value,
+      subject: contactForm.subject.value || '미선택',
+      message: contactForm.message.value,
+    };
 
-      // Hide success after 6s
-      setTimeout(() => {
-        formSuccess.classList.remove('show');
-      }, 6000);
-    }, 1200);
+    emailjs.send('service_dmgaz2u', 'vntrxhe', templateParams)
+      .then(() => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        formSuccess.style.color = '#6dc87d';
+        formSuccess.style.borderColor = 'rgba(100,200,120,0.3)';
+        formSuccess.textContent = '? 문의가 접수되었습니다. 영업일 기준 1일 이내 연락드리겠습니다.';
+        formSuccess.classList.add('show');
+        contactForm.reset();
+        setTimeout(() => formSuccess.classList.remove('show'), 6000);
+      })
+      .catch((error) => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        formSuccess.style.color = '#e05353';
+        formSuccess.style.borderColor = 'rgba(220,50,50,0.3)';
+        formSuccess.textContent = '? 전송 중 오류가 발생했습니다. 전화로 문의해 주세요. (051-319-0979)';
+        formSuccess.classList.add('show');
+        console.error('EmailJS error:', error);
+      });
   });
 
-  // Real-time validation clear on input
   contactForm.querySelectorAll('input, textarea').forEach(field => {
     field.addEventListener('input', () => {
       field.style.borderColor = '';
@@ -191,7 +197,7 @@ if (contactForm) {
   });
 }
 
-// Shake keyframe injected dynamically
+// Shake 애니메이션
 const style = document.createElement('style');
 style.textContent = `
   @keyframes shake {
@@ -206,7 +212,7 @@ document.head.appendChild(style);
 
 
 /* ────────────────────────────────────────
-   8. ACTIVE NAV LINK on scroll (spy)
+   7. ACTIVE NAV LINK on scroll (spy)
    ──────────────────────────────────────── */
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
@@ -231,7 +237,7 @@ sections.forEach(s => spyObserver.observe(s));
 
 
 /* ────────────────────────────────────────
-   9. HERO BACKGROUND PARALLAX (subtle)
+   8. HERO PARALLAX
    ──────────────────────────────────────── */
 const heroGlow = document.querySelector('.hero-glow');
 if (heroGlow) {
@@ -245,16 +251,13 @@ if (heroGlow) {
 
 
 /* ────────────────────────────────────────
-   10. PROD CARDS ? open feedback (optional)
+   9. PROD CARDS ? 클릭시 문의 폼으로 이동
    ──────────────────────────────────────── */
 document.querySelectorAll('.prod-card').forEach(card => {
   card.addEventListener('click', () => {
     const name = card.querySelector('h3')?.textContent || '';
-    // Scroll to contact and pre-fill subject
     const subjectSelect = document.getElementById('subject');
-    if (subjectSelect) {
-      subjectSelect.value = 'quote';
-    }
+    if (subjectSelect) subjectSelect.value = 'quote';
     const messageField = document.getElementById('message');
     if (messageField && !messageField.value) {
       messageField.value = `${name} 관련 견적을 문의드립니다.\n\n`;
